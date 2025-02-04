@@ -55,6 +55,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Retrieve API key
+REDIS_HOST = os.getenv("REDIS_HOST")
+REDIS_PORT = os.getenv("REDIS_PORT")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 api_key = os.getenv("GEMINI_API_KEY")
 
 # Debugging: Check if the API key is being loaded
@@ -66,7 +69,7 @@ if not api_key:
 genai.configure(api_key=api_key)
 
 # Connect to Redis
-redis_client = redis.StrictRedis(host='localhost', port=6379, db=0, decode_responses=True)
+redis_client = redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT, db=0, decode_responses=True)
 
 def get_gemini_response(prompt):
     """Fetch response from Gemini API."""
