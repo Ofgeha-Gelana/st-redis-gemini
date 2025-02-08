@@ -14,6 +14,8 @@ This project focuses on enhancing the performance of a SearXNG instance by integ
 - **Streamlit**: A framework for building interactive web applications for data science and machine learning.
 - **SearXNG**: A privacy-respecting metasearch engine.
 
+![Screenshot](https://raw.githubusercontent.com/Ofgeha-Gelana/st-redis-gemini/refs/heads/main/src/Screenshot%20from%202025-02-08%2010-02-11.png) 
+
 ## Installation
 
 To set up the project locally, follow these steps:
