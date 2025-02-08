@@ -17,6 +17,11 @@ This project focuses on enhancing the performance of a SearXNG instance by integ
 ## Screenshot
 ![Screenshot](https://raw.githubusercontent.com/Ofgeha-Gelana/st-redis-gemini/refs/heads/main/src/Screenshot%20from%202025-02-08%2010-02-11.png) 
 
+
+## Demo
+
+🔗 [Live Demo](https://your-demo-link.com)  
+
 ## Installation
 
 To set up the project locally, follow these steps:
