@@ -18,9 +18,9 @@ This project focuses on enhancing the performance of a SearXNG instance by integ
 ![Screenshot](https://raw.githubusercontent.com/Ofgeha-Gelana/st-redis-gemini/refs/heads/main/src/Screenshot%20from%202025-02-08%2010-02-11.png) 
 
 
-## Demo
+<!-- ## Demo
 
-🔗 [Live Demo](https://your-demo-link.com)  
+🔗 [Live Demo](https://your-demo-link.com)   -->
 
 ## Installation
 
@@ -29,4 +29,6 @@ To set up the project locally, follow these steps:
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/Ofgeha-Gelana/st-redis-gemini.git
-   cd your-repo-name
+   cd st-redis-gemini
+   cd scripts
+   streamlit run app.py
