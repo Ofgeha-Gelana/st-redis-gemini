@@ -29,14 +29,30 @@ def get_gemini_response(history):
     response = model.generate_content(history)
     return response.text if response else "Error fetching response."
 
+# def store_message(role, content):
+#     """Store chat messages in ChromaDB."""
+#     vector = embedding_model.encode(content).tolist()
+#     collection.add(
+#         documents=[content], 
+#         embeddings=[vector], 
+#         metadatas=[{"role": role}]
+#     )
+
+
+import uuid  # Import UUID to generate unique IDs
+
 def store_message(role, content):
-    """Store chat messages in ChromaDB."""
+    """Store chat messages in ChromaDB with unique IDs."""
     vector = embedding_model.encode(content).tolist()
+    unique_id = str(uuid.uuid4())  # Generate a random unique ID
+
     collection.add(
+        ids=[unique_id],  # Required unique ID
         documents=[content], 
         embeddings=[vector], 
         metadatas=[{"role": role}]
     )
+
 
 def retrieve_context(user_input, top_k=3):
     """Retrieve the most relevant past messages for context."""
