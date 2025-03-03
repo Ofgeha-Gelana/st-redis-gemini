@@ -25,7 +25,9 @@ embedding_model = SentenceTransformer("all-MiniLM-L6-v2")  # Small, efficient em
 
 def get_gemini_response(history):
     """Fetch response from Gemini API with context."""
-    model = genai.GenerativeModel("gemini-pro")
+    # model = genai.GenerativeModel("gemini-pro")
+    model = genai.GenerativeModel("gemini-1.5-pro") ## added after error raised
+
     response = model.generate_content(history)
     return response.text if response else "Error fetching response."
 
@@ -90,5 +92,6 @@ if st.button("Send"):
 
 # Reset button to clear context
 if st.button("Reset Chat"):
-    collection.delete(where={})  # Clears stored messages
+    # collection.delete(where={})   # Clears stored messages
+    collection.delete(where={"$exists": True})  # Deletes all documents in the collection
     st.success("Chat history cleared.")
