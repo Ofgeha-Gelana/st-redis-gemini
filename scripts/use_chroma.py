@@ -92,19 +92,26 @@ def maybe_get_cached_response(user_input, similarity_threshold=0.9):
     
     return None
 
-
 def get_response(user_input):
-    """Generate a response with context-aware retrieval from ChromaDB."""
+    # Check for a similar past user message and use cached reply
+    cached = maybe_get_cached_response(user_input)
+    if cached:
+        return cached
+
+    # Otherwise proceed with context + Gemini
     context = retrieve_context(user_input)
     full_prompt = f"Context:\n{context}\nUser: {user_input}\nAssistant:"
-    
     response = get_gemini_response(full_prompt)
 
-    # Store new messages
-    store_message("user", user_input)
-    store_message("assistant", response)
+    # Store both messages with paired IDs
+    user_id = str(uuid.uuid4())
+    assistant_id = str(uuid.uuid4())
+
+    store_message("user", user_input, msg_id=user_id, pair_id=assistant_id)
+    store_message("assistant", response, msg_id=assistant_id, pair_id=user_id)
 
     return response
+
 
 # Streamlit UI
 st.title("AI Chat with ChromaDB Memory")
