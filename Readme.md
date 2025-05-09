@@ -1,34 +1,46 @@
-# SearXNG Performance Optimization with Redis and Streamlit
+# AI Chat with Context Memory using Gemini, Redis, and ChromaDB
 
-This project focuses on enhancing the performance of a SearXNG instance by integrating Redis as a local cache to store search results and responses. The addition of Redis significantly improves system efficiency by reducing redundant queries and speeding up response times. Streamlit is used to provide a user-friendly interface for interacting with the search engine.
+This project implements two context-aware AI chat applications using **Google's Gemini Pro**, built with **Streamlit**. It demonstrates two approaches for handling conversation memory:
 
-## Features
+- **Redis-based caching** for session-level chat persistence
+- **ChromaDB vector search** for semantic memory retrieval
 
-- **Redis Integration**: Redis is used as a local cache to store search results and responses, reducing the need for redundant queries and improving response times.
-- **Streamlit Interface**: A Streamlit-based interface is provided for users to interact with the search engine in a user-friendly way.
-- **Performance Optimization**: The configuration is optimized to ensure smooth interactions with Redis, and the caching process is fine-tuned for maximum performance.
+Both apps use efficient memory strategies to enhance response quality, reduce redundant API calls, and optimize performance.
 
-## Technologies Used
-
-- **Redis**: A high-performance in-memory data store used for caching search results.
-- **Streamlit**: A framework for building interactive web applications for data science and machine learning.
-- **SearXNG**: A privacy-respecting metasearch engine.
-
-## Screenshot
-![Screenshot](https://raw.githubusercontent.com/Ofgeha-Gelana/st-redis-gemini/refs/heads/main/src/Screenshot%20from%202025-02-08%2010-02-11.png) 
+![Screenshot](https://raw.githubusercontent.com/Ofgeha-Gelana/st-redis-gemini/refs/heads/main/src/Screenshot%20from%202025-02-08%2010-02-11.png)
 
 
-<!-- ## Demo
+---
 
-🔗 [Live Demo](https://your-demo-link.com)   -->
+##  Features
 
-## Installation
+- **Streamlit Interface** – Simple and responsive web UI for chatting with AI
+- **Memory via Redis** – Stores full chat history in Redis for immediate recall
+- **Memory via ChromaDB** – Uses vector embeddings and semantic search for intelligent context
+- **Gemini Pro Integration** – Generates responses using Google’s generative AI API
+- **Optimized API Usage** – Avoids unnecessary Gemini calls by checking historical context
 
-To set up the project locally, follow these steps:
+---
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/Ofgeha-Gelana/st-redis-gemini.git
-   cd st-redis-gemini
-   cd scripts
-   streamlit run app.py
+## Technologies
+
+- **[Streamlit](https://streamlit.io/)** – UI framework for rapid prototyping
+- **[Google Generative AI SDK](https://ai.google.dev/)** – Access Gemini models
+- **[Redis](https://redis.io/)** – High-performance in-memory cache
+- **[ChromaDB](https://www.trychroma.com/)** – Local vector database for embeddings
+- **[SentenceTransformers](https://www.sbert.net/)** – Text embeddings for semantic search
+- **Python** – Core programming language
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/Ofgeha-Gelana/st-redis-gemini.git
+cd st-redis-gemini
+
+python -m venv venv
+source venv/bin/activate        # On Windows: venv\Scripts\activate
+
