@@ -41,16 +41,20 @@ def get_gemini_response(history):
 
 import uuid  # Import UUID to generate unique IDs
 
-def store_message(role, content):
-    """Store chat messages in ChromaDB with unique IDs."""
+def store_message(role, content, msg_id=None, pair_id=None):
+    """Store chat messages in ChromaDB with optional ID linking."""
     vector = embedding_model.encode(content).tolist()
-    unique_id = str(uuid.uuid4())  # Generate a random unique ID
+    unique_id = msg_id or str(uuid.uuid4())  # Use given ID or generate new one
+
+    metadata = {"role": role}
+    if pair_id:
+        metadata["pair_id"] = pair_id
 
     collection.add(
-        ids=[unique_id],  # Required unique ID
-        documents=[content], 
-        embeddings=[vector], 
-        metadatas=[{"role": role}]
+        ids=[unique_id],
+        documents=[content],
+        embeddings=[vector],
+        metadatas=[metadata]
     )
 
 
