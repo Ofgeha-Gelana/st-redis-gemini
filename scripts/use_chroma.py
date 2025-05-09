@@ -68,6 +68,31 @@ def retrieve_context(user_input, top_k=3):
     past_messages = [doc for doc in results["documents"][0]]
     return "\n".join(past_messages)
 
+
+def maybe_get_cached_response(user_input, similarity_threshold=0.9):
+    """Try to find a previous similar user message and return its paired assistant reply."""
+    vector = embedding_model.encode(user_input).tolist()
+    results = collection.query(query_embeddings=[vector], n_results=1)
+
+    if not results["documents"] or not results["metadatas"]:
+        return None
+
+    doc = results["documents"][0][0]
+    meta = results["metadatas"][0][0]
+
+    if meta["role"] != "user":
+        return None
+
+    user_msg_id = results["ids"][0][0]
+    
+    # Find the paired assistant response
+    assistant_results = collection.get(where={"pair_id": user_msg_id})
+    if assistant_results and assistant_results["documents"]:
+        return assistant_results["documents"][0]
+    
+    return None
+
+
 def get_response(user_input):
     """Generate a response with context-aware retrieval from ChromaDB."""
     context = retrieve_context(user_input)
